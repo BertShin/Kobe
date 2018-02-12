@@ -1,4 +1,5 @@
-## Kobe - A Homage for my best buddy... my doge
+## Kobe - A Homage for my best buddy
+...my doge
 
 ### Overview
 
@@ -52,3 +53,38 @@ WIREFRAME HERE !!!!!!!!!!!!!!!!!!!
 
 
 ### Timeline
+
+**Weekend**
+
+-[] Read through three.js introduction documentation.
+-[] Watch various tutorial Videos about three.js.
+-[] Setup `three.js`.
+
+**Day-1**: Setup all necessary files needed to start the application. Get Started on using the `three.js` environment and becoming familiar with how to start the rendering.
+
+  -[] Learn more/become more familiar with `three.js`.
+  -[] Start rendering the backdrop.
+  -[] Start modeling of how the main graphic will look like.
+
+**Day-2**: Learn more about the mathematics that will be needed to start the complicated rendering process of the head of Kobe. He has a double coat and mane so it'll be tough figuring out how to render all that hair.
+
+  -[] Dive head on into the math that will be needed for the head and fur.
+  -[] Get a handle of how all the rendering will work.
+  -[] Ideally Start the rendering of the parts that don't need the fur.
+
+**Day-3**: Start writing logic for how the user will interact with Kobe and how Kobe will react when those actions are invoked.
+
+  -[] Write out all the logic for the interactivity of the application, bit by bit, starting with the petting.
+  -[] Figure out how the model will react when the actions are invoked.
+  -[] Render the hair and the mane.
+
+**Day-4**: Refining the interactivity of the application and the graphic model.
+
+  -[] FINISH any of the interactivity that is still in-progress.
+  -[] Touch up on the model and make sure everything is working smoothly.
+
+**Day-5**: Final styling and addition of the personal plugs//details and information about how the application was made.
+
+  -[] Add personal plugs.
+  -[] Add details/information about how the application was made.
+  -[] Finishing touches to styling on the landing page and model.
