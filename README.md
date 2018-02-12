@@ -43,7 +43,7 @@ This application will focus on and mainly utilize Vanilla `JavaScript` and featu
 
 Kobe will consist of a single landing page. The layout will be pretty simplistic with a white background, Kobe rendered in the middle largely displayed, and the various ways to interact with him at each corner of the page.
 
-The links to my various pages will be displayed _+______ and the details/information about how the graphic is being rendered contained in the modal _=_______
+The links to my various pages will be displayed at the top right of the page and the details/information about how the graphic is being rendered contained on the left side of the page.
 
 ![](https://github.com/BertShin/Kobe/blob/master/Kobe.png)
 
