@@ -45,12 +45,7 @@ Kobe will consist of a single landing page. The layout will be pretty simplistic
 
 The links to my various pages will be displayed _+______ and the details/information about how the graphic is being rendered contained in the modal _=_______
 
-
-WIREFRAME HERE !!!!!!!!!!!!!!!!!!!
-WIREFRAME HERE !!!!!!!!!!!!!!!!!!!
-WIREFRAME HERE !!!!!!!!!!!!!!!!!!!
-WIREFRAME HERE !!!!!!!!!!!!!!!!!!!
-
+![](https://github.com/BertShin/Kobe/blob/master/Kobe.png)
 
 ### Timeline
 
