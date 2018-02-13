@@ -1,20 +1,25 @@
 import * as THREE from 'three';
 var OrbitControls = require('three-orbit-controls')(THREE);
 
+// THREE.js Necessities
+let world;
 let scene;
 let camera;
 let renderer;
-let world;
-let mane;
-let face;
 let light;
 let backLight;
 let controls;
 let size;
 let divisions;
 let gridhelper;
+let axishelper;
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
+
+// Kobe
+let mane;
+let face;
+let head;
 
 
 function init() {
@@ -35,7 +40,9 @@ function createHelperGrid() {
   size = 20;
   divisions = 20;
   gridhelper = new THREE.GridHelper(size, divisions);
+  axishelper = new THREE.AxisHelper(20);
   scene.add( gridhelper );
+  scene.add( axishelper );
 }
 
 function createLights() {
@@ -49,10 +56,12 @@ function createLights() {
 }
 
 function createMane() {
-  let geometry = new THREE.BoxGeometry(10, 10, 2);
-  let material = new THREE.MeshBasicMaterial({color: 0xD3D3D3});
+  let geometry = new THREE.BoxGeometry(10, 10, 1);
+  let material = new THREE.MeshBasicMaterial({color: 0x000000, wireframe: true});
   mane = new THREE.Mesh(geometry, material);
   mane.position.y = 1;
+  mane.position.z = -5;
+  mane.rotation.z = .8;
   scene.add( mane );
   camera.position.z = 20;
 }
@@ -60,16 +69,29 @@ function createMane() {
 function createFace() {
   // (radiusTop, radiusBottom, height, radialSegments);
   let geometry = new THREE.CylinderGeometry(1, 2, 3.5);
-  let material = new THREE.MeshBasicMaterial({ color: 0xD3D3D3 });
+  let material = new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true });
   face = new THREE.Mesh(geometry, material);
+  face.rotation.x = 1.5;
   face.position.z = 5;
   scene.add( face );
 }
 
+function createHead() {
+  let geometry = new THREE.BoxGeometry(5, 6, 1);
+  let material = new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true});
+  head = new THREE.Mesh(geometry, material);
+  head.position.x = 0;
+  head.position.y = 1;
+  head.position.z = 0;
+  scene.add( head );
+}
+
+function createEars() {
+  
+}
+
 function animateLoop () {
   requestAnimationFrame( animateLoop );
-  mane.rotation.z = .8;
-  face.rotation.x = 1.5;
   renderer.render( scene, camera );
 }
 
@@ -78,5 +100,6 @@ init();
 createLights();
 createMane();
 createFace();
+createHead();
 createHelperGrid();
 animateLoop();
