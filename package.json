@@ -1,0 +1,32 @@
+{
+  "name": "kobe",
+  "version": "1.0.0",
+  "description": "A Homage to my best buddy",
+  "main": "Kobe.js",
+  "scripts": {
+    "test": "mocha --reporter list",
+    "start": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BertShin/Kobe.git"
+  },
+  "author": "Albert Shin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BertShin/Kobe/issues"
+  },
+  "homepage": "https://github.com/BertShin/Kobe#readme",
+  "devDependencies": {
+    "mocha": "^5.0.0",
+    "three": "^0.89.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "three": "^0.89.0",
+    "webpack": "^3.11.0"
+  },
+  "keywords": []
+}
