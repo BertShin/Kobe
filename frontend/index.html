@@ -9,45 +9,8 @@
     </style>
   </head>
   <body>
-    <!-- <script src="../threejs/three.js"></script> -->
     <script src="../bundle.js"></script>
-    <!-- <script>
-    // Basic needs for a Scene, Camera, and Renderer //
-      let scene = new THREE.Scene();
-      let camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-      let renderer = new THREE.WebGLRenderer({alpha: true});
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
-
-      // Start geometry for a simple square //
-
-      let geometry = new THREE.BoxGeometry(2, 2, 2);
-      // Materials take an object of properties which will be applied to them
-      let material = new THREE.MeshBasicMaterial({color: 0x00fff0});
-
-      // Mesh is an object that takes a geometry and applies the material to it.
-      let cube = new THREE.Mesh(geometry, material);
-      // Adding the cube we've just made ( a combination of the geometry and the material) to our scene has a default coordinate of (0, 0, 0)
-      // This causes our to be within the cube, thus line 36.
-      scene.add( cube );
-
-      camera.position.z = 8;
-
-      // Causes the renderer to draw the scene everytime the screen is refreshed.
-      // by using requestAnimationFrame instead of setInterval, it pauses whenever the user navigates to another tab unlike setInterval, therefore saving precious processing power and battery life.
-      const animate = () => {
-        requestAnimationFrame( animate );
-        cube.rotation.x += 0.03;
-        cube.rotation.y += 0.01;
-        renderer.render( scene, camera );
-      }
-
-      animate();
-    </script> -->
-
-
-    <main id="world"></main>
+    <div id="world"></div>
 
   </body>
 </html>
