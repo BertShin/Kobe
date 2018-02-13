@@ -27,6 +27,7 @@ function init() {
   camera = new THREE.PerspectiveCamera(100, (WIDTH / HEIGHT), 0.1, 2000);
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(WIDTH, HEIGHT);
+  renderer.setPixelRatio(window.devicePixelRatio);
   controls = new OrbitControls( camera );
   camera.position.set(0, 0, 0);
   controls.update();
@@ -57,7 +58,9 @@ function createLights() {
 
 function createMane() {
   let geometry = new THREE.BoxGeometry(10, 10, 1);
-  let material = new THREE.MeshBasicMaterial({color: 0x000000, wireframe: true});
+  let material = new THREE.MeshBasicMaterial({
+    color: 0x000000, wireframe: true
+  });
   mane = new THREE.Mesh(geometry, material);
   mane.position.y = 1;
   mane.position.z = -5;
@@ -66,10 +69,12 @@ function createMane() {
   camera.position.z = 20;
 }
 
-function createFace() {
+function createNose() {
   // (radiusTop, radiusBottom, height, radialSegments);
-  let geometry = new THREE.CylinderGeometry(1, 2, 3.5);
-  let material = new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true });
+  let geometry = new THREE.CylinderGeometry(1, 1.5, 3);
+  let material = new THREE.MeshBasicMaterial({
+    color: 0x000000, wireframe: true
+  });
   face = new THREE.Mesh(geometry, material);
   face.rotation.x = 1.5;
   face.position.z = 5;
@@ -78,7 +83,9 @@ function createFace() {
 
 function createHead() {
   let geometry = new THREE.BoxGeometry(5, 6, 1);
-  let material = new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true});
+  let material = new THREE.MeshBasicMaterial({
+    color: 0x000000, wireframe: true
+  });
   head = new THREE.Mesh(geometry, material);
   head.position.x = 0;
   head.position.y = 1;
@@ -87,7 +94,7 @@ function createHead() {
 }
 
 function createEars() {
-  
+
 }
 
 function animateLoop () {
@@ -99,7 +106,7 @@ function animateLoop () {
 init();
 createLights();
 createMane();
-createFace();
+createNose();
 createHead();
 createHelperGrid();
 animateLoop();
