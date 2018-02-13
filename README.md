@@ -9,7 +9,7 @@ Kobe is a 3D animated and interactive graphic that will be named and modeled aft
 
   * This application will be interactive in a sense that the user will be able to pet Kobe, feed him his favorite treat (A piece of juicy watermelon), and use a toy to play with him.
 
-    * I will begin by trying to render his face and his mane and If I far enough, next will be his body!
+    * I will begin by trying to render his face and his mane and If I progress enough, next will be his body!
     * For the interactive elements, I will start with the petting, second; the treat, and lastly the toy.
 
 
