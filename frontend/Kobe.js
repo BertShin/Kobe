@@ -9,7 +9,7 @@ let renderer;
 let hemLight;
 let shadowLighting;
 let pointLight;
-let backLight;
+let backLighting;
 let controls;
 let floor;
 let size;
@@ -76,25 +76,25 @@ function createFloor() {
 function createLights() {
   hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .5);
 
+  backLighting = new THREE.DirectionalLight(0xffffff, .7);
+  backLighting.position.set(-50, 50, 50);
+  backLighting.shadowDarkness = .1;
+  backLighting.castShadow = true;
+
   shadowLighting = new THREE.DirectionalLight(0xffffff, .7);
   shadowLighting.position.set(50, 50, 50);
   shadowLighting.castShadow = true;
   shadowLighting.shadowDarkness = .5;
 
-  backLight = new THREE.DirectionalLight(0xffffff, .7);
-  backLight.position.set(-50, 50, 50);
-  backLight.shadowDarkness = .1;
-  backLight.castShadow = true;
-
-  scene.add(backLight);
   scene.add(hemLight);
+  scene.add(backLighting);
   scene.add(shadowLighting);
 }
 
 function createMane() {
   let geometry = new THREE.BoxGeometry(10, 10, 1);
   let material = new THREE.MeshPhongMaterial({
-    color: 0xffffff, wireframe: wireFrameBool
+    color: 0xF0F0F0, wireframe: wireFrameBool
   });
   mane = new THREE.Mesh(geometry, material);
   mane2 = new THREE.Mesh(geometry, material);
