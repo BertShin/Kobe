@@ -6,8 +6,8 @@ let world;
 let scene;
 let camera;
 let renderer;
-let light;
-let shadowLight;
+let hemLight;
+let shadowLighting;
 let pointLight;
 let backLight;
 let controls;
@@ -18,10 +18,10 @@ let gridhelper;
 let axishelper;
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
-let wireFrameBool = true;
+let wireFrameBool = false;
 
 // Kobe
-let mesh;
+let head;
 let mane;
 let mane2;
 let mane3;
@@ -29,23 +29,25 @@ let mane4;
 let endMane;
 let nose;
 let nostril;
-let head;
+let face;
 
 
 function init() {
   scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera(100, (WIDTH / HEIGHT), 0.1, 2000);
-  renderer = new THREE.WebGLRenderer({ alpha: false, antialias: true });
+  camera = new THREE.PerspectiveCamera(100, (WIDTH / HEIGHT), .1, 2000);
+  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(WIDTH, HEIGHT);
   renderer.setPixelRatio(window.devicePixelRatio);
   controls = new OrbitControls( camera );
   camera.position.set(0, 0, 0);
   camera.position.z = 20;
+  camera.position.y = 0;
   controls.update();
-  mesh = new THREE.Object3D();
   // world = document.getElementById('world');
   // world = document.body.appendChild(renderer.domElement);
   // world.appendChild(renderer.domElement);
+
+  // ADD EventListeners and other domElements;
   document.body.appendChild(renderer.domElement);
 }
 
@@ -53,57 +55,45 @@ function createHelperGrid() {
   size = 20;
   divisions = 20;
   gridhelper = new THREE.GridHelper(size, divisions);
-  axishelper = new THREE.AxisHelper(20);
+  axishelper = new THREE.AxesHelper(20);
   scene.add( gridhelper );
   scene.add( axishelper );
 }
 
 function createFloor() {
   let plane = new THREE.PlaneBufferGeometry(1000, 500);
-  let material = new THREE.MeshBasicMaterial({ color: 0xEBE5E7});
+  let material = new THREE.MeshPhongMaterial({ color: 0xffffff});
   floor = new THREE.Mesh(plane, material);
 
   floor.rotation.x = -Math.PI / 2;
-  floor.position.y = -20;
+  floor.position.y = -10;
   floor.receiveShadow = true;
 
   scene.add( floor );
 }
 
 
-// function createLights() {
-//   light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
-//   // light = new THREE.AmbientLight(0xffffff, .5);
-//   pointLight = new THREE.PointLight(0xffffff, .5);
-//   backLight = new THREE.DirectionalLight(0xffffff, .4);
-//   backLight.position.set(-100, 200, 50);
-//   pointLight.position.set(0, -50, 50);
-//   scene.add(backLight);
-//   scene.add(light);
-//   scene.add(pointLight);
-// }
-
 function createLights() {
-  light = new THREE.HemisphereLight(0xffffff, 0xffffff, .5);
+  hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .5);
 
-  shadowLight = new THREE.DirectionalLight(0xffffff, .8);
-  shadowLight.position.set(200, 200, 200);
-  shadowLight.castShadow = true;
-  shadowLight.shadowDarkness = .2;
+  shadowLighting = new THREE.DirectionalLight(0xffffff, .7);
+  shadowLighting.position.set(50, 50, 50);
+  shadowLighting.castShadow = true;
+  shadowLighting.shadowDarkness = .5;
 
-  backLight = new THREE.DirectionalLight(0xffffff, .4);
-  backLight.position.set(-100, 200, 50);
+  backLight = new THREE.DirectionalLight(0xffffff, .7);
+  backLight.position.set(-50, 50, 50);
   backLight.shadowDarkness = .1;
   backLight.castShadow = true;
 
   scene.add(backLight);
-  scene.add(light);
-  scene.add(shadowLight);
+  scene.add(hemLight);
+  scene.add(shadowLighting);
 }
 
 function createMane() {
   let geometry = new THREE.BoxGeometry(10, 10, 1);
-  let material = new THREE.MeshLambertMaterial({
+  let material = new THREE.MeshPhongMaterial({
     color: 0xffffff, wireframe: wireFrameBool
   });
   mane = new THREE.Mesh(geometry, material);
@@ -129,7 +119,7 @@ function createMane() {
 
   // End of the mane //
   let geometry1 = new THREE.ConeGeometry(3, 4, 3);
-  let material1 = new THREE.MeshLambertMaterial({
+  let material1 = new THREE.MeshPhongMaterial({
       color: 0xffffff,
       wireframe: wireFrameBool
     });
@@ -141,21 +131,13 @@ function createMane() {
   endMane.rotation.x = -.5;
   endMane.rotation.y = 1.05;
   endMane.rotation.z = 3.15;
-  // scene.add( mane );
-  // scene.add( mane2 );
-  // scene.add( mane3 );
-  // scene.add( mane4 );
-  mesh.add( mane );
-  mesh.add( mane2 );
-  mesh.add( mane3 );
-  mesh.add( mane4 );
-  mesh.add( endMane );
+
 }
 
 function createNose() {
   // (radiusTop, radiusBottom, height, radialSegments);
   let geometry = new THREE.CylinderGeometry(1, 1.5, 3);
-  let material = new THREE.MeshLambertMaterial({
+  let material = new THREE.MeshPhongMaterial({
     color: 0xffffff, wireframe: wireFrameBool
   });
   nose = new THREE.Mesh(geometry, material);
@@ -165,7 +147,7 @@ function createNose() {
 
   //Nostril
   let geometry1 = new THREE.SphereGeometry(.9, 6, 6);
-  let material1 = new THREE.MeshLambertMaterial({
+  let material1 = new THREE.MeshPhongMaterial({
     color: 0xffffff,
     wireframe: wireFrameBool
   });
@@ -174,38 +156,56 @@ function createNose() {
 
   nostril.position.z = 5.6;
   nostril.position.y = -.1;
-  // scene.add( nose );
-  mesh.add( nose );
-  mesh.add( nostril );
 }
+
+
 //  HEAD //
-function createHead() {
+function createFace() {
   let geometry = new THREE.BoxGeometry(5, 6, 4);
-  let material = new THREE.MeshLambertMaterial({
+  let material = new THREE.MeshPhongMaterial({
     color: 0xffffff, wireframe: wireFrameBool
   });
-  head = new THREE.Mesh(geometry, material);
-  head.position.x = 0;
-  head.position.y = 1;
-  head.position.z = 1;
-  // scene.add( head );
-  mesh.add( head );
+  face = new THREE.Mesh(geometry, material);
+  face.position.x = 0;
+  face.position.y = 1;
+  face.position.z = 1;
 }
 
 function createEars() {
 
 }
 
-function createMesh() {
-  mesh.position.y = 2;
-  scene.add( mesh );
+function createHead() {
+  // Grouping all Geometries
+  head = new THREE.Object3D();
+  head.add( face );
+  head.add( mane );
+  head.add( mane2 );
+  head.add( mane3 );
+  head.add( mane4 );
+  head.add( endMane );
+  head.add( nose );
+  head.add( nostril );
+
+  head.traverse( function ( meshes) {
+    if (meshes instanceof THREE.Mesh) {
+      meshes.castShadow = true;
+      meshes.receiveShadow = true;
+    }
+  });
+
+  console.log(head.children);
+
+  head.position.y = 2;
+  scene.add( head );
 }
 
 function animateLoop () {
   requestAnimationFrame( animateLoop );
-  // mesh.rotation.x += .05;
-  // mesh.rotation.y += .01;
-  // mesh.rotation.z += .04;
+  // head.rotation.x += .05;
+  head.rotation.y += .01;
+  // head.rotation.z += .04;
+  renderer.shadowMap.enabled = true;
   renderer.render( scene, camera );
 }
 
@@ -215,7 +215,7 @@ createLights();
 createFloor();
 createMane();
 createNose();
+createFace();
+// createHelperGrid();
 createHead();
-createHelperGrid();
-createMesh();
 animateLoop();
