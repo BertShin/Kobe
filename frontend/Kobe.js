@@ -21,6 +21,7 @@ const HEIGHT = window.innerHeight;
 let wireFrameBool = false;
 
 // Kobe
+let oColor =  0xb8b8b8;
 let head;
 let mane;
 let mane2;
@@ -36,7 +37,7 @@ function init() {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(100, (WIDTH / HEIGHT), .1, 2000);
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setSize(WIDTH, HEIGHT);
+  renderer.setSize(WIDTH/2, HEIGHT/2);
   renderer.setPixelRatio(window.devicePixelRatio);
   controls = new OrbitControls( camera );
   camera.position.set(0, 0, 0);
@@ -62,7 +63,7 @@ function createHelperGrid() {
 
 function createFloor() {
   let plane = new THREE.PlaneBufferGeometry(1000, 500);
-  let material = new THREE.MeshPhongMaterial({ color: 0xffffff});
+  let material = new THREE.MeshPhongMaterial({ color: 0xf0f0f0});
   floor = new THREE.Mesh(plane, material);
 
   floor.rotation.x = -Math.PI / 2;
@@ -78,13 +79,11 @@ function createLights() {
 
   backLighting = new THREE.DirectionalLight(0xffffff, .7);
   backLighting.position.set(-50, 50, 50);
-  backLighting.shadowDarkness = .1;
   backLighting.castShadow = true;
 
   shadowLighting = new THREE.DirectionalLight(0xffffff, .7);
-  shadowLighting.position.set(50, 50, 50);
+  shadowLighting.position.set(10, 10, 10);
   shadowLighting.castShadow = true;
-  shadowLighting.shadowDarkness = .5;
 
   scene.add(hemLight);
   scene.add(backLighting);
@@ -94,7 +93,7 @@ function createLights() {
 function createMane() {
   let geometry = new THREE.BoxGeometry(10, 10, 1);
   let material = new THREE.MeshPhongMaterial({
-    color: 0xF0F0F0, wireframe: wireFrameBool
+    color: oColor, wireframe: wireFrameBool
   });
   mane = new THREE.Mesh(geometry, material);
   mane2 = new THREE.Mesh(geometry, material);
@@ -120,7 +119,7 @@ function createMane() {
   // End of the mane //
   let geometry1 = new THREE.ConeGeometry(3, 4, 3);
   let material1 = new THREE.MeshPhongMaterial({
-      color: 0xffffff,
+      color: oColor,
       wireframe: wireFrameBool
     });
 
@@ -138,7 +137,7 @@ function createNose() {
   // (radiusTop, radiusBottom, height, radialSegments);
   let geometry = new THREE.CylinderGeometry(1, 1.5, 3);
   let material = new THREE.MeshPhongMaterial({
-    color: 0xffffff, wireframe: wireFrameBool
+    color: oColor, wireframe: wireFrameBool
   });
   nose = new THREE.Mesh(geometry, material);
   nose.rotation.x = 1.5;
@@ -146,9 +145,9 @@ function createNose() {
   nose.position.y = -.3;
 
   //Nostril
-  let geometry1 = new THREE.SphereGeometry(.9, 6, 6);
+  let geometry1 = new THREE.SphereGeometry(.8, 6, 6);
   let material1 = new THREE.MeshPhongMaterial({
-    color: 0xffffff,
+    color: 0x000000,
     wireframe: wireFrameBool
   });
 
@@ -163,7 +162,7 @@ function createNose() {
 function createFace() {
   let geometry = new THREE.BoxGeometry(5, 6, 4);
   let material = new THREE.MeshPhongMaterial({
-    color: 0xffffff, wireframe: wireFrameBool
+    color: oColor, wireframe: wireFrameBool
   });
   face = new THREE.Mesh(geometry, material);
   face.position.x = 0;
@@ -193,18 +192,16 @@ function createHead() {
       meshes.receiveShadow = true;
     }
   });
-
-  console.log(head.children);
-
+  
   head.position.y = 2;
   scene.add( head );
 }
 
 function animateLoop () {
   requestAnimationFrame( animateLoop );
-  // head.rotation.x += .05;
+  // head.rotation.x += .1;
   head.rotation.y += .01;
-  // head.rotation.z += .04;
+  // head.rotation.z += .1;
   renderer.shadowMap.enabled = true;
   renderer.render( scene, camera );
 }
