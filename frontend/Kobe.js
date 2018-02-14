@@ -21,6 +21,7 @@ const HEIGHT = window.innerHeight;
 let wireFrameBool = false;
 
 // Kobe
+// DECIDED COLOR: 0xb8b8b8
 let oColor =  0xb8b8b8;
 let head;
 let mane;
@@ -31,17 +32,21 @@ let endMane;
 let nose;
 let nostril;
 let face;
+let ear1;
+let ear2;
+let inner1;
+let inner2;
 
 
 function init() {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(100, (WIDTH / HEIGHT), .1, 2000);
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setSize(WIDTH/2, HEIGHT/2);
+  renderer.setSize(WIDTH, HEIGHT);
   renderer.setPixelRatio(window.devicePixelRatio);
   controls = new OrbitControls( camera );
   camera.position.set(0, 0, 0);
-  camera.position.z = 20;
+  camera.position.z = 12;
   camera.position.y = 0;
   controls.update();
   // world = document.getElementById('world');
@@ -171,7 +176,62 @@ function createFace() {
 }
 
 function createEars() {
+  // (radius, height, radialsegments, heightsegments)
+  let geometry = new THREE.ConeGeometry(.8, 2.6, 5);
+  let material = new THREE.MeshPhongMaterial({
+    color: oColor,
+    wireframe: wireFrameBool
+  });
 
+  let innerGeo = new THREE.ConeGeometry(.35, 2.1, 3);
+  let innerMat = new THREE.MeshPhongMaterial({
+    color: 0xffcccc,
+    wireframe: false
+  })
+
+  ear1 = new THREE.Mesh(geometry, material);
+  ear2 = new THREE.Mesh(geometry, material);
+
+  inner1 = new THREE.Mesh(innerGeo, innerMat);
+  inner2 = new THREE.Mesh(innerGeo, innerMat);
+
+  ear1.position.x = 2.7;
+  ear1.position.y = 7.5;
+  ear1.position.z = .5;
+
+  ear1.rotation.x = .45;
+  ear1.rotation.y = .64;
+  ear1.rotation.z = -.57;
+
+  ear2.position.x = -2.7;
+  ear2.position.y = 7.5;
+  ear2.position.z = .5;
+
+  ear2.rotation.x = -.45;
+  ear2.rotation.y = .64;
+  ear2.rotation.z = .57;
+
+  inner1.position.x = 2.7;
+  inner1.position.y = 7.3;
+  inner1.position.z = .85;
+  
+  inner1.rotation.x = .5;
+  inner1.rotation.y = 1;
+  inner1.rotation.z = -.7;
+
+  inner2.position.x = -2.6;
+  inner2.position.y = 7.3;
+  inner2.position.z = .85;
+  
+  inner2.rotation.x = .45;
+  inner2.rotation.y = -1;
+  inner2.rotation.z = .7;
+  
+
+  scene.add(ear1);
+  scene.add(ear2);
+  scene.add(inner1); 
+  scene.add(inner2);
 }
 
 function createHead() {
@@ -186,7 +246,7 @@ function createHead() {
   head.add( nose );
   head.add( nostril );
 
-  head.traverse( function ( meshes) {
+  head.traverse( function ( meshes ) {
     if (meshes instanceof THREE.Mesh) {
       meshes.castShadow = true;
       meshes.receiveShadow = true;
@@ -200,7 +260,7 @@ function createHead() {
 function animateLoop () {
   requestAnimationFrame( animateLoop );
   // head.rotation.x += .1;
-  head.rotation.y += .01;
+  // head.rotation.y += .01;
   // head.rotation.z += .1;
   renderer.shadowMap.enabled = true;
   renderer.render( scene, camera );
@@ -210,9 +270,10 @@ function animateLoop () {
 init();
 createLights();
 createFloor();
-createMane();
+// createMane();
 createNose();
 createFace();
-// createHelperGrid();
+createHelperGrid();
 createHead();
+createEars();
 animateLoop();
