@@ -2,7 +2,7 @@ import * as THREE from 'three';
 var OrbitControls = require('three-orbit-controls')(THREE);
 
 // THREE.js Necessities
-let world;
+let kobeSpace;
 let scene;
 let camera;
 let renderer;
@@ -27,8 +27,10 @@ let mousePosition = {
 };
 
 // Kobe
-// DECIDED COLOR: 0x
-let oColor = 0xd3d3d3;
+// DECIDED COLOR: 
+// FOR PHONG MATERIAL: 0xd3d3d3(lighter), 0xb8b8b8(darker)
+// FOR TOON MATERIAL: 0xa9a9a9 works well.
+let oColor = 0xa9a9a9;
 let kobe;
 let head;
 let mane;
@@ -58,11 +60,13 @@ const init = () => {
   renderer.setSize(WIDTH, HEIGHT);
   renderer.setPixelRatio(window.devicePixelRatio);
   controls = new OrbitControls(camera);
-  camera.position.set(0, 5, 15);
+  camera.position.set(0, 5, 12);
+  // camera.position.set(0, 4, 8);
   controls.update();
 
   // ADD EventListeners and other domElements;
-  document.body.appendChild(renderer.domElement);
+  kobeSpace = document.getElementById('kobeSpace');
+  kobeSpace.appendChild(renderer.domElement);
   document.addEventListener("mousemove", handleMouseMovement, false);
 };
 
@@ -113,9 +117,28 @@ class Kobe {
   constructor() {
     this.head = new THREE.Object3D();
 
+    // EYES //
+    //(radius, tube, radialSegments, tubularSegments, arc)
+    let eyeGeometry = new THREE.TorusGeometry(.5, .2, 2, 14, Math.PI);
+    let eyeMaterial = new THREE.MeshToonMaterial({
+      color: 0x000000,
+    });
+
+    let rightEye = new THREE.Mesh( eyeGeometry, eyeMaterial );
+    let leftEye = new THREE.Mesh( eyeGeometry, eyeMaterial );
+
+
+    rightEye.position.x = 1.2;
+    rightEye.position.y = 2.25;
+    rightEye.position.z = 3.04;
+
+    leftEye.position.x = -1.2;
+    leftEye.position.y = 2.25;
+    leftEye.position.z = 3.04;
+
     // Mane //
     let maneGeometry = new THREE.BoxGeometry(10, 10, 1);
-    let maneMaterial = new THREE.MeshPhongMaterial({
+    let maneMaterial = new THREE.MeshToonMaterial({
       color: oColor, wireframe: wireFrameBool
     });
     mane = new THREE.Mesh(maneGeometry, maneMaterial);
@@ -141,7 +164,7 @@ class Kobe {
 
     // Tip of the mane //
     let endManeGeometry1 = new THREE.ConeGeometry(3, 4, 3);
-    let endManeMaterial1 = new THREE.MeshPhongMaterial({
+    let endManeMaterial1 = new THREE.MeshToonMaterial({
       color: oColor,
       wireframe: wireFrameBool
     });
@@ -157,7 +180,7 @@ class Kobe {
     // NOSE //
     // (radiusTop, radiusBottom, height, radialSegments);
     let noseGeometry = new THREE.CylinderGeometry(1, 1.5, 3);
-    let noseMaterial = new THREE.MeshPhongMaterial({
+    let noseMaterial = new THREE.MeshToonMaterial({
       color: oColor, wireframe: wireFrameBool
     });
     nose = new THREE.Mesh(noseGeometry, noseMaterial);
@@ -167,7 +190,7 @@ class Kobe {
 
     // NOSTRIL //
     let nosGeometry1 = new THREE.SphereGeometry(.8, 6, 6);
-    let nosMaterial1 = new THREE.MeshPhongMaterial({
+    let nosMaterial1 = new THREE.MeshToonMaterial({
       color: 0x000000,
       wireframe: wireFrameBool
     });
@@ -177,9 +200,53 @@ class Kobe {
     nostril.position.z = 5.6;
     nostril.position.y = -.1;
 
+    // NOSTRIL SPOTS //
+
+    let spotGeometry = new THREE.SphereGeometry(.1, 6, 6);
+    let spotMaterial = new THREE.MeshToonMaterial({
+      color: 0x000000,
+      wireframe: wireFrameBool
+    });
+
+    let spot = new THREE.Mesh( spotGeometry, spotMaterial );
+    let spot2 = new THREE.Mesh( spotGeometry, spotMaterial);
+    let spot3 = new THREE.Mesh( spotGeometry, spotMaterial );
+
+    let spot4 = new THREE.Mesh( spotGeometry, spotMaterial );
+    let spot5 = new THREE.Mesh( spotGeometry, spotMaterial );
+    let spot6 = new THREE.Mesh( spotGeometry, spotMaterial );
+
+      // RIGHT SIDE SPOTS //
+    //bottom spot//
+    spot.position.x = .94;
+    spot.position.y = -.35;
+    spot.position.z = 5.3;
+    //top spot//
+    spot2.position.x = .81;
+    spot2.position.y = .2;
+    spot2.position.z = 5.3;
+    //Inbetween spot//
+    spot3.position.x = 1;
+    spot3.position.y = -.1;
+    spot3.position.z = 4.9;
+    
+    // LEFT SIDE SPOTS //
+    //bottom spot//
+    spot4.position.x = -.94;
+    spot4.position.y = -.35;
+    spot4.position.z = 5.3;
+    //top spot//
+    spot5.position.x = -.81;
+    spot5.position.y = .2;
+    spot5.position.z = 5.3;
+    //Inbetween spot//
+    spot6.position.x = -1;
+    spot6.position.y = -.1;
+    spot6.position.z = 4.9;
+
     // FACE //
     let faceGeometry = new THREE.BoxGeometry(5, 6, 4);
-    let faceMaterial = new THREE.MeshPhongMaterial({
+    let faceMaterial = new THREE.MeshToonMaterial({
       color: oColor, wireframe: wireFrameBool
     });
     face = new THREE.Mesh(faceGeometry, faceMaterial);
@@ -190,13 +257,13 @@ class Kobe {
     // EARS //
     // (radius, height, radialsegments, heightsegments)
     let earGeometry = new THREE.ConeGeometry(.8, 2.6, 5);
-    let earMaterial = new THREE.MeshPhongMaterial({
+    let earMaterial = new THREE.MeshToonMaterial({
       color: oColor,
       wireframe: wireFrameBool
     });
 
     let innerGeo = new THREE.ConeGeometry(.35, 2.1, 3);
-    let innerMat = new THREE.MeshPhongMaterial({
+    let innerMat = new THREE.MeshToonMaterial({
       color: 0xff99cc,
       wireframe: wireFrameBool
     });
@@ -240,6 +307,8 @@ class Kobe {
     inner2.rotation.z = .7;
 
     this.head.add(face);
+    this.head.add(leftEye);
+    this.head.add(rightEye);
     this.head.add(mane);
     this.head.add(mane2);
     this.head.add(mane3);
@@ -247,6 +316,12 @@ class Kobe {
     this.head.add(endMane);
     this.head.add(nose);
     this.head.add(nostril);
+    this.head.add(spot);
+    this.head.add(spot2);
+    this.head.add(spot3);
+    this.head.add(spot4);
+    this.head.add(spot5);
+    this.head.add(spot6);
     this.head.add(ear1);
     this.head.add(ear2);
     this.head.add(inner1);
