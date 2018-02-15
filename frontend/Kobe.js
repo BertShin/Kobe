@@ -68,13 +68,8 @@ function init() {
   renderer.setSize(WIDTH, HEIGHT);
   renderer.setPixelRatio(window.devicePixelRatio);
   controls = new OrbitControls(camera);
-  camera.position.set(0, 0, 0);
-  camera.position.z = 12;
-  camera.position.y = 0;
+  camera.position.set(0, 5, 15);
   controls.update();
-  // world = document.getElementById('world');
-  // world = document.body.appendChild(renderer.domElement);
-  // world.appendChild(renderer.domElement);
 
   // ADD EventListeners and other domElements;
   document.body.appendChild(renderer.domElement);
@@ -111,7 +106,7 @@ function createLights() {
   backLighting.castShadow = true;
 
   shadowLighting = new THREE.DirectionalLight(0xffffff, .7);
-  shadowLighting.position.set(10, 10, 10);
+  shadowLighting.position.set(50, 50, 50);
   shadowLighting.castShadow = true;
 
   scene.add(hemLight);
@@ -143,15 +138,15 @@ class Kobe {
     mane.rotation.z = .8;
 
     mane2.position.y = 1;
-    mane2.position.z = -1.1;
+    mane2.position.z = -1.2;
     mane2.rotation.z = 0;
 
     mane3.position.y = 1;
-    mane3.position.z = -1.2;
+    mane3.position.z = -1.6;
     mane3.rotation.z = .35;
 
     mane4.position.y = 1;
-    mane4.position.z = -1.2;
+    mane4.position.z = -1.8;
     mane4.rotation.z = -.35;
 
     // Tip of the mane //
@@ -247,7 +242,7 @@ class Kobe {
     inner1.rotation.z = -.7;
 
     inner2.position.x = -2.5;
-    inner2.position.y = 5.3;
+    inner2.position.y = 5.35;
     inner2.position.z = .89;
 
     inner2.rotation.x = .35;
@@ -276,6 +271,7 @@ class Kobe {
     });
 
     this.head.position.y = 2;
+    this.head.rotation.x = .1;
     scene.add( this.head );
     this.updateHead = this.updateHead.bind(this);
     this.track = this.track.bind(this);
@@ -305,7 +301,7 @@ const animateLoop = () => {
   let yPos = (mousePosition.y - halfWindowY);
 
   // console.log(kobe);
-  kobe.track(xPos, yPos);
+  // kobe.track(xPos, yPos);
   requestAnimationFrame(animateLoop);
   // head.rotation.x += .1;
   // kobe.rotation.y += .01;
@@ -319,5 +315,5 @@ init();
 createKobe();
 createLights();
 createFloor();
-createHelperGrid();
+// createHelperGrid();
 animateLoop();
