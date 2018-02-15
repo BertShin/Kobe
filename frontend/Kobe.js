@@ -44,14 +44,14 @@ let ear2;
 let inner1;
 let inner2;
 
-function handleMouseMovement(e) {
+const handleMouseMovement = (e) => {
   mousePosition = {
     x: e.clientX,
     y: e.clientY
   };
-}
+};
 
-function init() {
+const init = () => {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(100, (WIDTH / HEIGHT), .1, 2000);
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -64,18 +64,18 @@ function init() {
   // ADD EventListeners and other domElements;
   document.body.appendChild(renderer.domElement);
   document.addEventListener("mousemove", handleMouseMovement, false);
-}
+};
 
-function createHelperGrid() {
+const createHelperGrid = () => {
   size = 20;
   divisions = 20;
   gridhelper = new THREE.GridHelper(size, divisions);
   axishelper = new THREE.AxesHelper(20);
   scene.add(gridhelper);
   scene.add(axishelper);
-}
+};
 
-function createFloor() {
+const createFloor = () => {
   let plane = new THREE.PlaneBufferGeometry(1000, 500);
   let material = new THREE.MeshPhongMaterial({ color: 0xf0f0f0 });
   floor = new THREE.Mesh(plane, material);
@@ -85,10 +85,10 @@ function createFloor() {
   floor.receiveShadow = true;
 
   scene.add(floor);
-}
+};
 
 
-function createLights() {
+const createLights = () => {
   hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .5);
 
   backLighting = new THREE.DirectionalLight(0xffffff, .5);
@@ -102,7 +102,7 @@ function createLights() {
   scene.add(hemLight);
   scene.add(backLighting);
   scene.add(shadowLighting);
-}
+};
 
 
 
@@ -239,7 +239,6 @@ class Kobe {
     inner2.rotation.y = -.9;
     inner2.rotation.z = .7;
 
-
     this.head.add(face);
     this.head.add(mane);
     this.head.add(mane2);
@@ -253,7 +252,7 @@ class Kobe {
     this.head.add(inner1);
     this.head.add(inner2);
 
-    this.head.traverse(function (meshes) {
+    this.head.traverse((meshes) => {
       if (meshes instanceof THREE.Mesh) {
         meshes.castShadow = true;
         meshes.receiveShadow = true;
