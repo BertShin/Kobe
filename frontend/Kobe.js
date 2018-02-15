@@ -27,8 +27,8 @@ let mousePosition = {
 };
 
 // Kobe
-// DECIDED COLOR: 0xb8b8b8
-let oColor = 0xb8b8b8;
+// DECIDED COLOR: 0x
+let oColor = 0xd3d3d3;
 let kobe;
 let head;
 let mane;
@@ -43,16 +43,6 @@ let ear1;
 let ear2;
 let inner1;
 let inner2;
-
-function rule3(v, vmin, vmax, tmin, tmax) {
-  let nv = Math.max(Math.min(v, vmax), vmin);
-  let dv = vmax - vmin;
-  let pc = (nv - vmin) / dv;
-  let dt = tmax - tmin;
-  let tv = tmin + (pc * dt);
-
-  return tv;
-}
 
 function handleMouseMovement(e) {
   mousePosition = {
@@ -101,12 +91,12 @@ function createFloor() {
 function createLights() {
   hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .5);
 
-  backLighting = new THREE.DirectionalLight(0xffffff, .7);
-  backLighting.position.set(-50, 50, 50);
+  backLighting = new THREE.DirectionalLight(0xffffff, .5);
+  backLighting.position.set(-100, 100, 60);
   backLighting.castShadow = true;
 
-  shadowLighting = new THREE.DirectionalLight(0xffffff, .7);
-  shadowLighting.position.set(50, 50, 50);
+  shadowLighting = new THREE.DirectionalLight(0xffffff, .5);
+  shadowLighting.position.set(100, 100, 60);
   shadowLighting.castShadow = true;
 
   scene.add(hemLight);
@@ -208,7 +198,7 @@ class Kobe {
     let innerGeo = new THREE.ConeGeometry(.35, 2.1, 3);
     let innerMat = new THREE.MeshPhongMaterial({
       color: 0xff99cc,
-      wireframe: false
+      wireframe: wireFrameBool
     });
 
     ear1 = new THREE.Mesh(earGeometry, earMaterial);
@@ -275,19 +265,28 @@ class Kobe {
     scene.add( this.head );
     this.updateHead = this.updateHead.bind(this);
     this.track = this.track.bind(this);
+    this.trackCalcNormalize = this.trackCalcNormalize.bind(this);
+  }
+
+  trackCalcNormalize(v, vmin, vmax, tmin, tmax) {
+    let nv = Math.max(Math.min(v, vmax), vmin);
+    let dv = vmax - vmin;
+    let pc = (nv - vmin) / dv;
+    let dt = tmax - tmin;
+    let tv = tmin + (pc * dt);
+
+    return tv;
   }
 
   updateHead(speed) {
     this.head.rotation.y += (this.head.headRotationY - this.head.rotation.y) / speed;
     this.head.rotation.x += (this.head.headRotationX - this.head.rotation.x) / speed;
-
-
   }
 
   track(xPos, yPos) {
-    this.head.headRotationY = rule3(xPos, 0, 100, -Math.PI / 4, Math.PI / 4);
-    this.head.headRotationX = rule3(yPos, 0, 100, -Math.PI / 4, Math.PI / 4);
-    this.updateHead(10);
+    this.head.headRotationY = this.trackCalcNormalize(xPos, -100, 100, -Math.PI / 4, Math.PI / 4);
+    this.head.headRotationX = this.trackCalcNormalize(yPos, -100, 100, -Math.PI / 4, Math.PI / 4);
+    this.updateHead(7);
   }
 
 }
@@ -301,7 +300,7 @@ const animateLoop = () => {
   let yPos = (mousePosition.y - halfWindowY);
 
   // console.log(kobe);
-  // kobe.track(xPos, yPos);
+  kobe.track(xPos, yPos);
   requestAnimationFrame(animateLoop);
   // head.rotation.x += .1;
   // kobe.rotation.y += .01;
