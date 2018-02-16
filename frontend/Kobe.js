@@ -28,9 +28,9 @@ let mousePosition = {
 
 // Kobe
 // DECIDED COLOR: 
-// FOR PHONG MATERIAL: 0xd3d3d3(lighter), 0xb8b8b8(darker)
+// FOR PHONG MATERIAL: 0xd3d3d3(lighter), 0xb8b8b8(darker), 0xf5f5f5
 // FOR TOON MATERIAL: 0xa9a9a9 works well.
-let oColor = 0xa9a9a9;
+let oColor = 0xf5f5f5;
 let kobe;
 let head;
 let mane;
@@ -96,11 +96,11 @@ const createLights = () => {
   hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .5);
 
   backLighting = new THREE.DirectionalLight(0xffffff, .5);
-  backLighting.position.set(-100, 100, 60);
+  backLighting.position.set(-120, 150, 100);
   backLighting.castShadow = true;
 
   shadowLighting = new THREE.DirectionalLight(0xffffff, .5);
-  shadowLighting.position.set(100, 100, 60);
+  shadowLighting.position.set(120, 150, 100);
   shadowLighting.castShadow = true;
 
   scene.add(hemLight);
@@ -120,7 +120,7 @@ class Kobe {
     // EYES //
     //(radius, tube, radialSegments, tubularSegments, arc)
     let eyeGeometry = new THREE.TorusGeometry(.5, .2, 2, 14, Math.PI);
-    let eyeMaterial = new THREE.MeshToonMaterial({
+    let eyeMaterial = new THREE.MeshPhongMaterial({
       color: 0x000000,
     });
 
@@ -138,7 +138,7 @@ class Kobe {
 
     // Mane //
     let maneGeometry = new THREE.BoxGeometry(10, 10, 1);
-    let maneMaterial = new THREE.MeshToonMaterial({
+    let maneMaterial = new THREE.MeshPhongMaterial({
       color: oColor, wireframe: wireFrameBool
     });
     mane = new THREE.Mesh(maneGeometry, maneMaterial);
@@ -164,7 +164,7 @@ class Kobe {
 
     // Tip of the mane //
     let endManeGeometry1 = new THREE.ConeGeometry(3, 4, 3);
-    let endManeMaterial1 = new THREE.MeshToonMaterial({
+    let endManeMaterial1 = new THREE.MeshPhongMaterial({
       color: oColor,
       wireframe: wireFrameBool
     });
@@ -180,7 +180,7 @@ class Kobe {
     // NOSE //
     // (radiusTop, radiusBottom, height, radialSegments);
     let noseGeometry = new THREE.CylinderGeometry(1, 1.5, 3);
-    let noseMaterial = new THREE.MeshToonMaterial({
+    let noseMaterial = new THREE.MeshPhongMaterial({
       color: oColor, wireframe: wireFrameBool
     });
     nose = new THREE.Mesh(noseGeometry, noseMaterial);
@@ -190,7 +190,7 @@ class Kobe {
 
     // NOSTRIL //
     let nosGeometry1 = new THREE.SphereGeometry(.8, 6, 6);
-    let nosMaterial1 = new THREE.MeshToonMaterial({
+    let nosMaterial1 = new THREE.MeshPhongMaterial({
       color: 0x000000,
       wireframe: wireFrameBool
     });
@@ -203,7 +203,7 @@ class Kobe {
     // NOSTRIL SPOTS //
 
     let spotGeometry = new THREE.SphereGeometry(.1, 6, 6);
-    let spotMaterial = new THREE.MeshToonMaterial({
+    let spotMaterial = new THREE.MeshPhongMaterial({
       color: 0x000000,
       wireframe: wireFrameBool
     });
@@ -246,7 +246,7 @@ class Kobe {
 
     // FACE //
     let faceGeometry = new THREE.BoxGeometry(5, 6, 4);
-    let faceMaterial = new THREE.MeshToonMaterial({
+    let faceMaterial = new THREE.MeshPhongMaterial({
       color: oColor, wireframe: wireFrameBool
     });
     face = new THREE.Mesh(faceGeometry, faceMaterial);
@@ -257,13 +257,13 @@ class Kobe {
     // EARS //
     // (radius, height, radialsegments, heightsegments)
     let earGeometry = new THREE.ConeGeometry(.8, 2.6, 5);
-    let earMaterial = new THREE.MeshToonMaterial({
+    let earMaterial = new THREE.MeshPhongMaterial({
       color: oColor,
       wireframe: wireFrameBool
     });
 
-    let innerGeo = new THREE.ConeGeometry(.35, 2.1, 3);
-    let innerMat = new THREE.MeshToonMaterial({
+    let innerGeo = new THREE.ConeGeometry(.36, 1.7, 3);
+    let innerMat = new THREE.MeshBasicMaterial({
       color: 0xff99cc,
       wireframe: wireFrameBool
     });
@@ -292,10 +292,10 @@ class Kobe {
 
     inner1.position.x = 2.5;
     inner1.position.y = 5.3;
-    inner1.position.z = .85;
+    inner1.position.z = .86;
 
     inner1.rotation.x = .45;
-    inner1.rotation.y = .9;
+    inner1.rotation.y = .8;
     inner1.rotation.z = -.7;
 
     inner2.position.x = -2.5;
@@ -303,7 +303,7 @@ class Kobe {
     inner2.position.z = .89;
 
     inner2.rotation.x = .35;
-    inner2.rotation.y = -.9;
+    inner2.rotation.y = -.8;
     inner2.rotation.z = .7;
 
     this.head.add(face);
@@ -374,7 +374,7 @@ const animateLoop = () => {
   let yPos = (mousePosition.y - halfWindowY);
 
   // console.log(kobe);
-  kobe.track(xPos, yPos);
+  // kobe.track(xPos, yPos);
   requestAnimationFrame(animateLoop);
   // head.rotation.x += .1;
   // kobe.rotation.y += .01;
