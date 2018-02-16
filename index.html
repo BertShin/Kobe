@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="./jquery-3.3.1.min.js"></script>
     <!-- Always a Shout out to Font Awesome for their Awesome Icons -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <!-- Icon Designed by Alex Tass -->
     <!-- http://alextass.com/about-alex-tass -->
     <link rel="icon" href="http://alextass.com/wp-content/uploads/2015/05/Dog-happy-puppy-tongue-logo-design-symbol-icon-by-Alex-Tass.jpg">
-    <link rel="stylesheet" type="text/css" href="./stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="./frontend/stylesheet.css">
     <title>Kobe.</title>
   </head>
   <body>
@@ -16,6 +16,9 @@
     <intro id="introC" class="intro-container">
       <span id="intro" class="animate intro1">Hello</span>
       <span id="intro2" class="animate intro2">meet Kobe</span>
+      <span id="intro3" class="animate intro3">
+        A Homage to my Pup
+      </span> 
     </intro>
 
     <script>
@@ -32,14 +35,18 @@
       }, 4000)
 
       setTimeout(() => {
+        $(intro3).attr('class', 'animate introOut');
+      }, 7200)
+        
+      setTimeout(() => {
         $(introC).css('display', 'none');
-      }, 4500)
+      }, 8000)
 
     </script>
 
     <div>
       <div id="kobeSpace"></div> 
-      <script src="../bundle.js"></script>
+      <script src="./bundle.js"></script>
       <section id="personal-plugs">
         <a target="_blank" href="https://github.com/BertShin/Kobe">
           <i id="git" class="fab fa-github-alt"></i>
@@ -54,6 +61,14 @@
         </a>
       </section>
     </div>
+
+    <section id="infoContainer">
+      <section class="animate info">
+        <p> This ones for you Bud</p>
+        <img src="kobe1.png"/>
+        <!-- <img src="kobe2.png"/> -->
+      </section> 
+    </section> 
     
   </body>
 </html>

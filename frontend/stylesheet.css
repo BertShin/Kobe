@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -112,6 +114,18 @@ body {
   animation-delay: 2.7s;
 }
 
+.intro3 {
+  -webkit-animation-name: introIn;
+  animation-name: introIn;
+  animation-delay: 5.2s;
+}
+
+.info {
+  -webkit-animation-name: introIn;
+  animation-name: introIn;
+  animation-delay: 8s;
+}
+
 @-webkit-keyframes introOut {
   from {
     opacity: 1;
@@ -141,8 +155,31 @@ body {
 
 /* END OF RESET */
 
-#main{
-    display: none;
+
+/* Information */
+
+#infoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 10%;
+  top: 18%;
+  width: 10%;
+  /* border: 1px solid black; */
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 35px;
+  text-align: center;
+}
+
+#infoContainer img {
+  margin-top: 20px;
+  border-radius: 40px;
+  height: 300px;
+  width: 300px;
+  box-shadow: 0 1.5px 5px 1.5px rgba(0,0,0,.5);
+
 }
 
 /* Introduction */
@@ -150,21 +187,16 @@ body {
 .intro-container {
     display: flex;
     position: fixed;
-    left: 0;
+    left: 5%;
     flex-direction: column;
     height: 90%;
     width: 25%;
     align-items: center;
+    text-align: center;
     justify-content: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 40px;
     font-weight: 500;
-}
-
-
-#intro2{
-    display: block;
-    padding-bottom: 50px;
 }
 
 /* Personal Plugs */
@@ -173,27 +205,24 @@ body {
     position: fixed;
     align-items: center;
     flex-direction: row-reverse;
-    left: 40px;
-    bottom: 20px;
+    left: 39%;
+    bottom: 10px;
     justify-content: space-between;
     width: 265px;
     height: 120px;
-    font-size: 80px;
-    -webkit-animation-name: introIn;
-    animation-name: introIn;
-    animation-delay: 5s;
+    font-size: 70px;
 }
 
 #git{
     color: black;
     margin-top: 4px;
     margin-left: 4px;
-    height: 80px;
+    height: 70px;
 }
 
 #angel,
 #link {
-    height: 70px;
+    height: 60px;
 }
 
 #angel {

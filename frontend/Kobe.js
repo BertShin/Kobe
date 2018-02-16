@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-var OrbitControls = require('three-orbit-controls')(THREE);
+// var OrbitControls = require('three-orbit-controls')(THREE);
 
 // THREE.js Necessities
 let kobeSpace;
@@ -59,15 +59,15 @@ const init = () => {
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(WIDTH, HEIGHT);
   renderer.setPixelRatio(window.devicePixelRatio);
-  controls = new OrbitControls(camera);
-  camera.position.set(0, 5, 12);
+  // controls = new OrbitControls(camera);
+  // controls.update();
+  camera.position.set(0, 1, 12);
   // camera.position.set(0, 4, 8);
-  controls.update();
 
   // ADD EventListeners and other domElements;
-  // kobeSpace = document.getElementById('kobeSpace');
-  // kobeSpace.appendChild(renderer.domElement);
-  document.body.appendChild(renderer.domElement);
+  kobeSpace = document.getElementById('kobeSpace');
+  kobeSpace.appendChild(renderer.domElement);
+  // document.body.appendChild(renderer.domElement);
   document.addEventListener("mousemove", handleMouseMovement, false);
 };
 
