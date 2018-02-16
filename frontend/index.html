@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script src="../jquery-3.3.1.min.js"></script>
     <!-- Always a Shout out to Font Awesome for their Awesome Icons -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <!-- Icon Designed by Alex Tass -->
@@ -11,20 +12,47 @@
     <title>Kobe.</title>
   </head>
   <body>
-    <!-- <div id="kobeSpace"></div>  -->
-    <!-- <script src="../bundle.js"></script> -->
-    <div id="personal-plugs">
-      <a target="_blank" href="https://github.com/BertShin/Kobe">
-        <i id="git" class="fab fa-github-alt"></i>
-      </a>
-    
-      <a target="_blank" href="https://www.linkedin.com/in/albert-w-shin-020311154/">
-        <i id="link" class="fab fa-linkedin"></i>
-      </a>
-    
-      <a target="_blank" href="https://angel.co/bertshin?public_profile=1">
-        <i id="angel" class="fab fa-angellist"></i>
-      </a>
+
+    <intro id="introC" class="intro-container">
+      <span id="intro" class="animate intro1">Hello</span>
+      <span id="intro2" class="animate intro2">meet Kobe</span>
+    </intro>
+
+    <script>
+      let intro = document.getElementById("intro");
+      let intro2 = document.getElementById("intro2");
+      let introC = document.getElementById("introC"); 
+
+      setTimeout(() => {
+        $(intro).attr('class', 'animate introOut');
+      }, 1600)
+
+      setTimeout(() => {
+        $(intro2).attr('class', 'animate introOut');
+      }, 4000)
+
+      setTimeout(() => {
+        $(introC).css('display', 'none');
+      }, 4500)
+
+    </script>
+
+    <div>
+      <div id="kobeSpace"></div> 
+      <script src="../bundle.js"></script>
+      <section id="personal-plugs">
+        <a target="_blank" href="https://github.com/BertShin/Kobe">
+          <i id="git" class="fab fa-github-alt"></i>
+        </a>
+      
+        <a target="_blank" href="https://www.linkedin.com/in/albert-w-shin-020311154/">
+          <i id="link" class="fab fa-linkedin"></i>
+        </a>
+      
+        <a target="_blank" href="https://angel.co/bertshin?public_profile=1">
+          <i id="angel" class="fab fa-angellist"></i>
+        </a>
+      </section>
     </div>
     
   </body>

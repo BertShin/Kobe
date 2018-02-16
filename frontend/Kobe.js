@@ -65,8 +65,9 @@ const init = () => {
   controls.update();
 
   // ADD EventListeners and other domElements;
-  kobeSpace = document.getElementById('kobeSpace');
-  kobeSpace.appendChild(renderer.domElement);
+  // kobeSpace = document.getElementById('kobeSpace');
+  // kobeSpace.appendChild(renderer.domElement);
+  document.body.appendChild(renderer.domElement);
   document.addEventListener("mousemove", handleMouseMovement, false);
 };
 
@@ -93,7 +94,7 @@ const createFloor = () => {
 
 
 const createLights = () => {
-  hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .5);
+  hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .4);
 
   backLighting = new THREE.DirectionalLight(0xffffff, .5);
   backLighting.position.set(-120, 150, 100);
@@ -374,7 +375,7 @@ const animateLoop = () => {
   let yPos = (mousePosition.y - halfWindowY);
 
   // console.log(kobe);
-  // kobe.track(xPos, yPos);
+  kobe.track(xPos, yPos);
   requestAnimationFrame(animateLoop);
   // head.rotation.x += .1;
   // kobe.rotation.y += .01;

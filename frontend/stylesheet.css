@@ -73,31 +73,169 @@ body {
 	overflow: auto;
 }
 
+.animate {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes introIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes introIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.intro1 {
+  -webkit-animation-name: introIn;
+  animation-name: introIn;
+  animation-delay: .5s;
+}
+
+.intro2 {
+  -webkit-animation-name: introIn;
+  animation-name: introIn;
+  animation-delay: 2.7s;
+}
+
+@-webkit-keyframes introOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes introOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.introOut {
+  -webkit-animation-name: introOut;
+  animation-name: introOut;
+}
+
+
 /* END OF RESET */
 
+#main{
+    display: none;
+}
+
+/* Introduction */
+
+.intro-container {
+    display: flex;
+    position: fixed;
+    left: 0;
+    flex-direction: column;
+    height: 90%;
+    width: 25%;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    font-weight: 500;
+}
+
+
+#intro2{
+    display: block;
+    padding-bottom: 50px;
+}
+
+/* Personal Plugs */
 #personal-plugs{
     display: flex;
     position: fixed;
     align-items: center;
     flex-direction: row-reverse;
-    left: 20px;
-    bottom: 0;
+    left: 40px;
+    bottom: 20px;
     justify-content: space-between;
-    width: 200px;
-    height: 75px;
-    font-size: 60px;
-}
-
-#personal-plugs > a {
-    color: black;
+    width: 265px;
+    height: 120px;
+    font-size: 80px;
+    -webkit-animation-name: introIn;
+    animation-name: introIn;
+    animation-delay: 5s;
 }
 
 #git{
-    margin-top: 3px;
-    height: 56px;
+    color: black;
+    margin-top: 4px;
+    margin-left: 4px;
+    height: 80px;
 }
 
 #angel,
 #link {
-    height: 53px;
+    height: 70px;
 }
+
+#angel {
+    color: gray;
+}
+
+#personal-plugs > a {
+    color: rgba(53, 154, 255, 1);
+    /* color: rgba(145, 174, 255, 1); */
+    /* -webkit-transition: color 1s ease-in;
+    -moz-transition: color 1s ease-in;
+    -o-transition: color 1s ease-in;
+    transition: color 1s ease-in; */
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.25s;
+    -webkit-transition-duration: 0.25s;
+}
+
+#personal-plugs > a:hover {
+    /* color:  rgba(37, 65, 178, 1); */
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+}
+
+
+/* RGB */
+/* $baby-blue: rgba(175, 212, 255, 1);
+$light-purple: rgba(145, 174, 255, 1);
+$blue: rgba(53, 154, 255, 1);
+$indigo: rgba(0, 105, 144, 1);
+$dark-indigo: rgba(0, 38, 53, 1);
+$orange: #FA7921;
+
+/* RGB */
+/* $darkest-purple: rgba(31, 32, 65, 1);
+$purple: rgba(75, 63, 114, 1);
+$yellow: rgba(255, 200, 87, 1);
+$blue-green: rgba(17, 157, 164, 1);
+$blue-saph: rgba(25, 100, 126, 1);
+/* RGB */
+/* $royal-blue: rgba(3, 37, 208, 1);
+$denim-blue: rgba(37, 65, 178, 1);
+$green-blue: rgba(23, 104, 172, 1);
+$cyan: rgba(6, 190, 225, 1); */ 
