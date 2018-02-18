@@ -33,7 +33,7 @@ To initialize these renderings, a `scene`, `camera`, and `renderer` are required
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 ```
 
-I've also rendered a floor and various lights so that shadows may be reflected and seen and the `PlaneGeometry`;
+I've also rendered a floor and various lights so that shadows may be reflected and displayed on a `PlaneGeometry`;
 
 ```javascript
 const createFloor = () => {
@@ -71,7 +71,7 @@ class Kobe {
 ...
 ```
 
-Lastly, all geometries are continuously being rendered in an `animationLoop()`
+Lastly, all geometries are continuously being rendered in an `animateLoop()`
 
 ```javascript
 const animateLoop = () => {
