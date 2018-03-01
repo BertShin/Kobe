@@ -181,6 +181,14 @@ body {
 
 }
 
+.kobe-image {
+  display: none
+}
+
+.kobe-image:hover {
+  display: block
+}
+
 /* Introduction */
 
 .intro-container {
