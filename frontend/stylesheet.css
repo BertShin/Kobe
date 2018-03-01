@@ -157,6 +157,14 @@ body {
 
 /* Information */
 
+/* .kobe-header {
+  font-size: 40px;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  top: 0;
+} */
+
 #infoContainer {
   display: flex;
   flex-direction: column;
@@ -181,13 +189,13 @@ body {
 
 }
 
-.kobe-image {
+/* .kobe-image {
   display: none
 }
 
 .kobe-image:hover {
   display: block
-}
+} */
 
 /* Introduction */
 
