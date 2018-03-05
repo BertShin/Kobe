@@ -157,14 +157,6 @@ body {
 
 /* Information */
 
-/* .kobe-header {
-  font-size: 40px;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  top: 0;
-} */
-
 #infoContainer {
   display: flex;
   flex-direction: column;
@@ -176,7 +168,7 @@ body {
   width: 10%;
   /* border: 1px solid black; */
   font-family: 'Roboto Condensed', sans-serif;
-  font-size: 35px;
+  font-size: 45px;
   text-align: center;
 }
 
@@ -210,7 +202,7 @@ body {
     text-align: center;
     justify-content: center;
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 40px;
+    font-size: 55px;
     font-weight: 500;
 }
 

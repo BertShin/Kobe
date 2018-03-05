@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-// var OrbitControls = require('three-orbit-controls')(THREE);
+var OrbitControls = require('three-orbit-controls')(THREE);
 
 // THREE.js Necessities
 let kobeSpace;
@@ -97,11 +97,11 @@ const createLights = () => {
   hemLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .4);
 
   backLighting = new THREE.DirectionalLight(0xffffff, .5);
-  backLighting.position.set(-120, 150, 100);
+  backLighting.position.set(-140, 150, 100);
   backLighting.castShadow = true;
 
   shadowLighting = new THREE.DirectionalLight(0xffffff, .5);
-  shadowLighting.position.set(120, 150, 100);
+  shadowLighting.position.set(140, 150, 100);
   shadowLighting.castShadow = true;
 
   scene.add(hemLight);
@@ -307,6 +307,18 @@ class Kobe {
     inner2.rotation.y = -.8;
     inner2.rotation.z = .7;
 
+    // COLLAR //
+
+    let collarGeometry = new THREE.TorusGeometry(1, 1, 1, 14, Math.PI);
+    let collarMaterial = new THREE.MeshPhongMaterial({
+      color: oColor,
+      wireframe: wireFrameBool
+    });
+    let collar = new THREE.Mesh(collarGeometry, collarMaterial);
+    collar.position.z = 5;
+    
+    scene.add(collar);
+
     this.head.add(face);
     this.head.add(leftEye);
     this.head.add(rightEye);
@@ -375,7 +387,7 @@ const animateLoop = () => {
   let yPos = (mousePosition.y - halfWindowY);
 
   // console.log(kobe);
-  kobe.track(xPos, yPos);
+  // kobe.track(xPos, yPos);
   requestAnimationFrame(animateLoop);
   // head.rotation.x += .1;
   // kobe.rotation.y += .01;
@@ -389,5 +401,5 @@ init();
 createKobe();
 createLights();
 createFloor();
-// createHelperGrid();
+createHelperGrid();
 animateLoop();
