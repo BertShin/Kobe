@@ -140,15 +140,16 @@ var init = function init() {
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(WIDTH, HEIGHT);
   renderer.setPixelRatio(window.devicePixelRatio);
+  camera.position.set(0, 1, 12);
+
+  // Controls for editing //
   // controls = new OrbitControls(camera);
   // controls.update();
-  camera.position.set(0, 1, 12);
   // camera.position.set(0, 4, 8);
 
   // ADD EventListeners and other domElements;
   kobeSpace = document.getElementById('kobeSpace');
   kobeSpace.appendChild(renderer.domElement);
-  // document.body.appendChild(renderer.domElement);
   document.addEventListener("mousemove", handleMouseMovement, false);
 };
 
@@ -387,17 +388,21 @@ var Kobe = function () {
     inner2.rotation.z = .7;
 
     // COLLAR //
-
-    var collarGeometry = new THREE.TorusGeometry(1, 1, 1, 14, Math.PI);
+    //(radius, tube, radialSegments, tubularSegments, arc)
+    var collarGeometry = new THREE.TorusGeometry(2.55, .8, 5, 14, Math.PI);
     var collarMaterial = new THREE.MeshPhongMaterial({
-      color: oColor,
+      color: 0x0000ff,
       wireframe: wireFrameBool
     });
+
     var collar = new THREE.Mesh(collarGeometry, collarMaterial);
-    collar.position.z = 5;
 
-    scene.add(collar);
+    collar.rotation.x = 1.6;
 
+    collar.position.y = -3.2;
+    collar.position.z = -2.5;
+
+    this.head.add(collar);
     this.head.add(face);
     this.head.add(leftEye);
     this.head.add(rightEye);
@@ -472,7 +477,7 @@ var animateLoop = function animateLoop() {
   var yPos = mousePosition.y - halfWindowY;
 
   // console.log(kobe);
-  // kobe.track(xPos, yPos);
+  kobe.track(xPos, yPos);
   requestAnimationFrame(animateLoop);
   // head.rotation.x += .1;
   // kobe.rotation.y += .01;
@@ -485,7 +490,7 @@ init();
 createKobe();
 createLights();
 createFloor();
-createHelperGrid();
+// createHelperGrid();
 animateLoop();
 
 /***/ }),
