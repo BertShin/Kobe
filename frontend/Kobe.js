@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-var OrbitControls = require('three-orbit-controls')(THREE);
+// var OrbitControls = require('three-orbit-controls')(THREE);
 
 // THREE.js Necessities
 let kobeSpace;

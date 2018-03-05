@@ -238,21 +238,16 @@ body {
 
 #personal-plugs > a {
     color: rgba(53, 154, 255, 1);
-    /* color: rgba(145, 174, 255, 1); */
-    /* -webkit-transition: color 1s ease-in;
-    -moz-transition: color 1s ease-in;
-    -o-transition: color 1s ease-in;
-    transition: color 1s ease-in; */
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.25s;
-    -webkit-transition-duration: 0.25s;
+    -webkit-transform: perspective(0px) translateZ(0);
+    transform: perspective(0px) translateZ(0);
+    transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
 }
 
 #personal-plugs > a:hover {
     /* color:  rgba(37, 65, 178, 1); */
-    -webkit-transform: translateY(-10px);
-    transform: translateY(-10px);
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
 }
 
 
