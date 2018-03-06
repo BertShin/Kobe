@@ -17,8 +17,8 @@ time, mark, audio, video, button {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-    font: inherit;
-    text-decoration: none;
+  font-family: 'Roboto Condensed', arial;
+  text-decoration: none;
 	vertical-align: baseline;
 	-webkit-font-smoothing: antialiased;
 }
@@ -158,22 +158,21 @@ body {
 /* Information */
 
 #infoContainer {
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: fixed;
   right: 10%;
-  top: 18%;
+  top: 10%;
   width: 10%;
-  /* border: 1px solid black; */
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 45px;
+  font-size: 55px;
   text-align: center;
 }
 
 #infoContainer img {
-  margin-top: 20px;
+  margin-top: 30px;
   border-radius: 40px;
   height: 300px;
   width: 300px;
@@ -246,8 +245,8 @@ body {
 
 #personal-plugs > a:hover {
     /* color:  rgba(37, 65, 178, 1); */
-    -webkit-transform: translateY(-8px);
-    transform: translateY(-8px);
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
 }
 
 

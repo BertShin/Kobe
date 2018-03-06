@@ -12,7 +12,6 @@
     <title>Kobe.</title>
   </head>
   <body>
-
     
     <intro id="introC" class="intro-container">
       <span id="intro" class="animate intro1">Hello!</span>
@@ -25,7 +24,8 @@
     <script>
       let intro = document.getElementById("intro");
       let intro2 = document.getElementById("intro2");
-      let introC = document.getElementById("introC"); 
+      let introC = document.getElementById("introC");
+      let title1 = document.getElementById("title"); 
 
       setTimeout(() => {
         $(intro).attr('class', 'animate introOut');
@@ -42,7 +42,6 @@
       setTimeout(() => {
         $(introC).css('display', 'none');
       }, 8000)
-
     </script>
 
     <div>
@@ -65,7 +64,7 @@
 
     <section id="infoContainer">
       <section class="animate info">
-        <p> This ones for you Kobe</p>
+        <p>This is Kobe</p>
         <img src="kobe1.png"/>
         <!-- <img src="kobe2.png"/> -->
       </section> 
