@@ -167,7 +167,7 @@ body {
   right: 10%;
   top: 10%;
   width: 10%;
-  font-size: 55px;
+  font-size: 8.5vh;
   text-align: center;
 }
 
@@ -179,14 +179,6 @@ body {
   box-shadow: 0 1.5px 5px 1.5px rgba(0,0,0,.5);
 
 }
-
-/* .kobe-image {
-  display: none
-}
-
-.kobe-image:hover {
-  display: block
-} */
 
 /* Introduction */
 
@@ -201,7 +193,7 @@ body {
     text-align: center;
     justify-content: center;
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 55px;
+    font-size: 8.5vh;
     font-weight: 500;
 }
 
@@ -211,24 +203,19 @@ body {
     position: fixed;
     align-items: center;
     flex-direction: row-reverse;
-    left: 39%;
-    bottom: 10px;
+    left: 36%;
+    bottom: 3%;
     justify-content: space-between;
-    width: 265px;
-    height: 120px;
-    font-size: 70px;
+    width: 28vw;
+    height: 20vh;
+    font-size: 10vh;
 }
 
 #git{
     color: black;
     margin-top: 4px;
     margin-left: 4px;
-    height: 70px;
-}
-
-#angel,
-#link {
-    height: 60px;
+    font-size: 11vh;
 }
 
 #angel {
